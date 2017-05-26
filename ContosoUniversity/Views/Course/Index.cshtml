@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>Courses</h2>
+
+<p>
+    <span>
+        <a href="@Url.Action("Create")" class="btn btn-primary btn-outline">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            Create New
+        </a>
+    </span>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credits)
+        </th>
+        <th>
+            Department
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", new {id = item.CourseID })" class="btn btn-info btn-outline btn-sm">
+                <span class="glyphicon glyphicon-th"></span>
+                Details
+            </a>
+            <a href="@Url.Action("Edit", new {id = item.CourseID })" id="btnEdit" class="btn btn-warning btn-outline btn-sm">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Edit
+            </a>
+
+            <a href="@Url.Action("Delete", new {id = item.CourseID })" id="btnDelete" class="btn btn-danger btn-outline btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+                Delete
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
